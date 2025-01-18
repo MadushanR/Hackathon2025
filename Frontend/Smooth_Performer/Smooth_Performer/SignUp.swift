@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUp: View {
+    @Binding var changeView:Bool
     @State var firstName = ""
     @State var lastName = ""
     @State var email = ""
@@ -85,7 +86,7 @@ struct SignUp: View {
             .padding(.top,9)
         
         Button{
-            
+            // TODO: function for sending email and password while getting 200
         }label: {
             Text("Submit")
                 .font(.title3)
@@ -99,6 +100,17 @@ struct SignUp: View {
                 .padding(.top)
         }
         
+        HStack{
+            Text("I have an account.")
+            Button{
+                // MARK: Changing view
+                changeView.toggle()
+            }label: {
+                Text("Log-in")
+                    .foregroundColor(.blue)
+            }
+        }
+        .padding()
         
         
         Spacer(minLength: 40)
@@ -106,5 +118,5 @@ struct SignUp: View {
 }
 
 #Preview {
-    SignUp()
+    SignUp(changeView: .constant(false))
 }
