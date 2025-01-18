@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\madus\\desktop\\hackathon2025\\backend\\hackathonproject\\hackathonproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\hackathonproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\madus\\desktop\\hackathon2025\\backend\\hackathonproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -27,12 +31,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HackathonProject",
+              "DocumentMoniker": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\HackathonProject.csproj",
+              "RelativeDocumentMoniker": "HackathonProject\\HackathonProject.csproj",
+              "ToolTip": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\HackathonProject.csproj",
+              "RelativeToolTip": "HackathonProject\\HackathonProject.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-18T22:30:03.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\Models\\Student.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Models\\Student.cs",
               "ToolTip": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\Models\\Student.cs",
               "RelativeToolTip": "HackathonProject\\Models\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-18T22:06:15.173Z",
               "EditorCaption": ""
