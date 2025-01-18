@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct LSTab: View {
     @State var login = false
     var body: some View {
         if login{
@@ -19,5 +19,5 @@ struct TabView: View {
 }
 
 #Preview {
-    TabView()
+    LSTab()
 }
