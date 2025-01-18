@@ -34,6 +34,9 @@ struct Login: View {
         
         // MARK: Email
         TextField("Email",text: $email)
+            .keyboardType(.emailAddress)
+            .autocorrectionDisabled()
+            .autocapitalization(.none)
             .padding()
             .background(Color.white)
             .cornerRadius(8)
@@ -48,6 +51,8 @@ struct Login: View {
         // MARK: password
         SecureField("Password",text: $password)
             .padding()
+            .autocorrectionDisabled()
+            .autocapitalization(.none)
             .background(Color.white)
             .cornerRadius(8)
             .overlay(

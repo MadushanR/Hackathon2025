@@ -13,6 +13,7 @@ struct SignUp: View {
     @State var lastName = ""
     @State var email = ""
     @State var password = ""
+    @State var studentId = ""
     
     var body: some View {
         Image("chatting")
@@ -59,8 +60,27 @@ struct SignUp: View {
         }
         .padding(.horizontal)
         
+        // MARK: Student Id
+        TextField("Student ID",text: $studentId)
+            .keyboardType(.numberPad)
+            .autocorrectionDisabled()
+            .autocapitalization(.none)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.black, lineWidth: 2)
+                    .opacity(0.4)
+            )
+            .padding(.horizontal,30)
+            .padding(.top,9)
+        
         // MARK: Email
         TextField("Email",text: $email)
+            .keyboardType(.emailAddress)
+            .autocorrectionDisabled()
+            .autocapitalization(.none)
             .padding()
             .background(Color.white)
             .cornerRadius(8)
@@ -74,6 +94,8 @@ struct SignUp: View {
         
         // MARK: password
         SecureField("Password",text: $password)
+            .autocorrectionDisabled()
+            .autocapitalization(.none)
             .padding()
             .background(Color.white)
             .cornerRadius(8)
