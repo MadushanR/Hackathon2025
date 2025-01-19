@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/vernal-guide-448217-j7/your-app', 'Backend/HackathonProject']
+    args: ['build', '-t', 'gcr.io/vernal-guide-448217-j7/your-app', '-f', 'Backend/HackathonProject/Dockerfile', '.']
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'your-app',
            '--image', 'gcr.io/vernal-guide-448217-j7/your-app',
