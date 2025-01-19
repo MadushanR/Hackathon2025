@@ -5,6 +5,10 @@
     "\\Backend\\HackathonProject",
     "\\Backend\\HackathonProject\\Controllers"
   ],
+<<<<<<< HEAD
+  "SelectedNode": "\\Backend\\HackathonProject\\Controllers\\CourseController.cs",
+=======
   "SelectedNode": "\\.gitignore",
+>>>>>>> main
   "PreviewInSolutionExplorer": false
 }
