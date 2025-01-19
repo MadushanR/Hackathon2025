@@ -60,10 +60,10 @@ namespace HackathonProject.Controllers
                 CourseName = courseDto.CourseName,
 
                 // Set other properties to null if they are not provided in the DTO
-                Semester = string.IsNullOrEmpty(courseDto.Semester) ? null : courseDto.Semester,
-                SectionId = courseDto.SectionId != 0 ? (int?)courseDto.SectionId : null,
-                Credits = courseDto.Credits != 0 ? (int?)courseDto.Credits : null,
-                Grade = courseDto.Grade != 0 ? (double?)courseDto.Grade : null,
+                Semester = null,
+                SectionId = 0,
+                Credits =  0,
+                Grade = 0,
                 StudentId = courseDto.StudentId
             };
 
