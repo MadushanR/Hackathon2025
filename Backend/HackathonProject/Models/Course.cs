@@ -19,7 +19,6 @@ namespace HackathonProject.Models
 
         // Navigation Property
         [ForeignKey("StudentId")]
-        [JsonIgnore]
         public Student Student { get; set; }
     }
 }
