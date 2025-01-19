@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FetchService{
+struct FetchService{
     private enum FetchError: Error {
         case badResponse
     }
@@ -20,14 +20,28 @@ class FetchService{
     private(set) var student:Student?
     private(set) var course:Course?
     
-    private let baseURL = URL(string: "okok")!
+    private let baseURL = URL(string: "http://localhost:5244")
     
-    func fetchUser() async throws -> Student{
+    func fetchCurrentStudent() throws -> Student{
         
-        // TODO: Fetch data
-        let (data, response) = try await URLSession.shared.data(from: baseURL) // making a tuple
+    }
+    
+    func fetchStudent(for student:[String:Any]) async throws -> Student{
+        let jsonData = try JSONSerialization.data(withJSONObject: student, options: [])
+            
+        guard let url = baseURL else {
+            throw FetchError.badResponse
+        }
         
-        // TODO: Handle response
+        let createStudentURL = url.appending(path: "api/Student") // MARK: api/Student -> endpoint
+        
+        var request = URLRequest(url: createStudentURL)
+        request.httpMethod = "POST" // MARK: Specify HTTP method (POST)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // Set Content-Type header
+        request.httpBody = jsonData // MARK: Sending json in the request
+        
+        let (data, response) = try await URLSession.shared.data(for: request) // making a tuple
+        
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{ // this is gonna give us urlResponse
             throw FetchError.badResponse
         }
@@ -35,13 +49,11 @@ class FetchService{
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        // TODO: Decode data
-        let userData = try decoder.decode(Student.self, from: data)
-        print(userData)
+        let studentData = try decoder.decode(Student.self, from: data)
+        print(studentData)
         
-        print("I have the data")
-        // TODO: Return data
-        return userData
+        print(studentData)
+        return studentData
     }
     
     func fetchCourse(for jId:[String:Any]) async throws -> Course{
@@ -78,7 +90,7 @@ class FetchService{
         return courseData
     }
     
-    private func fetchStudentJson(){
+    private mutating func fetchStudentJson(){
         if let url = Bundle.main.url(forResource: "student", withExtension: "json"){
             do{
                 let data = try Data(contentsOf: url)
@@ -92,16 +104,13 @@ class FetchService{
         }
     }
     
-    private func fetchCoursesJson(){
+    private mutating func fetchCoursesJson(){
         if let url = Bundle.main.url(forResource: "course", withExtension: "json"){
             do{
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 self.course = try decoder.decode(Course.self, from: data)
-                print(course!)
-                self.student?.courses?.append(course!)
-                print(student!.courses![0])
             }catch{
                 print("Error decoding JSON data: \(error)")
             }

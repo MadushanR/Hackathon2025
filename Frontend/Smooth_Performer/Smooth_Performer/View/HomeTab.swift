@@ -16,11 +16,11 @@ struct HomeTab: View {
                     Text("Home")
                 }
             
-            Profile(student: FetchService().student!)
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("User")
-                }
+//            Profile(student: FetchService().student!)
+//                .tabItem {
+//                    Image(systemName: "person.fill")
+//                    Text("User")
+//                }
         }
         .preferredColorScheme(.light)
     }
