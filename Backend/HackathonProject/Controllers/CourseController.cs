@@ -63,6 +63,36 @@ namespace HackathonProject.Controllers
             return CreatedAtAction(nameof(GetCourses), new { studentId = course.StudentId }, course);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Course>> AddCourse([FromBody] CreateCourseDto courseDto)
+        {
+            // Verify that the student exists
+            if (!_context.Students.Any(s => s.StudentId == courseDto.StudentId))
+            {
+                return BadRequest("Invalid StudentId.");
+            }
+
+            // Map the DTO to a new Course entity
+            var course = new Course
+            {
+                // Always set CourseName from the DTO
+                CourseName = courseDto.CourseName,
+
+                // Set other properties to null if they are not provided in the DTO
+                Semester = string.IsNullOrEmpty(courseDto.Semester) ? null : courseDto.Semester,
+                SectionId = courseDto.SectionId != 0 ? (int?)courseDto.SectionId : null,
+                Credits = courseDto.Credits != 0 ? (int?)courseDto.Credits : null,
+                Grade = courseDto.Grade != 0 ? (double?)courseDto.Grade : null,
+                StudentId = courseDto.StudentId
+            };
+
+            _context.Courses.Add(course);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCourses), new { studentId = course.StudentId }, course);
+        }
+
+
         // PUT: api/Courses/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> EditCourse(int id, [FromBody] UpdateCourseDto updatedCourseDto)
