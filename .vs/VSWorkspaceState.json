@@ -2,8 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Backend",
-    "\\Backend\\HackathonProject"
+    "\\Backend\\HackathonProject",
+    "\\Backend\\HackathonProject\\Controllers"
   ],
-  "SelectedNode": "\\Backend\\HackathonProject\\Program.cs",
+<<<<<<< HEAD
+  "SelectedNode": "\\Backend\\HackathonProject\\Controllers\\CourseController.cs",
+=======
+  "SelectedNode": "\\.gitignore",
+>>>>>>> main
   "PreviewInSolutionExplorer": false
 }
