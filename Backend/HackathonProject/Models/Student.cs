@@ -15,7 +15,8 @@ namespace HackathonProject.Models
         public double DesiredGPA { get; set; }
 
         // Navigation Property for many courses
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<Course> Courses { get; set; } = new List<Course>();
+
     }
 }
     
