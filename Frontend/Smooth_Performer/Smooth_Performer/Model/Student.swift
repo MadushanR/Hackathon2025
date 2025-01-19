@@ -17,27 +17,32 @@ struct Student: Identifiable,Codable{
     let dGpa:Int
     var courses:[Course]?
     
-    enum StudentKeys:String,CodingKey{
-        case firstName
-        case lastName
-        case id = "studentId"
-        case email
-        case password
-        case gpa
-        case dGpa = "desiredGPA"
-        case courses
+    enum StudentJson:String,CodingKey{
+        case student
+        enum StudentKeys:String,CodingKey{
+            case firstName
+            case lastName
+            case id = "studentId"
+            case email
+            case password
+            case gpa
+            case dGpa = "desiredGPA"
+            case courses
+        }
     }
     
     init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: StudentKeys.self)
-        self.firstName = try container.decode(String.self, forKey: .firstName)
-        self.lastName = try container.decode(String.self, forKey: .lastName)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.email = try container.decode(String.self, forKey: .email)
-        self.password = try container.decode(String.self, forKey: .password)
-        self.gpa = try container.decode(Int.self, forKey: .gpa)
-        self.dGpa = try container.decode(Int.self, forKey: .dGpa)
-        self.courses = try container.decodeIfPresent([Course].self, forKey: .courses)
+        let container = try decoder.container(keyedBy: StudentJson.self)
+        let studentContainer = try container.nestedContainer(keyedBy: StudentJson.StudentKeys.self, forKey: .student)
+        
+        self.firstName = try studentContainer.decode(String.self, forKey: .firstName)
+        self.lastName = try studentContainer.decode(String.self, forKey: .lastName)
+        self.id = try studentContainer.decode(Int.self, forKey: .id)
+        self.email = try studentContainer.decode(String.self, forKey: .email)
+        self.password = try studentContainer.decode(String.self, forKey: .password)
+        self.gpa = try studentContainer.decode(Int.self, forKey: .gpa)
+        self.dGpa = try studentContainer.decode(Int.self, forKey: .dGpa)
+        self.courses = try studentContainer.decodeIfPresent([Course].self, forKey: .courses)
     }
     
     

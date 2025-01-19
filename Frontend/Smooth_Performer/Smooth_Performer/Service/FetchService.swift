@@ -22,9 +22,31 @@ struct FetchService{
     
     private let baseURL = URL(string: "http://localhost:5244")
     
-    func fetchCurrentStudent() throws -> Student{
-        
+    func fetchCurrentStudent() throws -> Student?{
+        if let data = UserDefaults.standard.data(forKey: "savedStudent") {
+                let decoder = JSONDecoder()
+                do {
+                    let student = try decoder.decode(Student.self, from: data)
+                    print("Student loaded from UserDefaults.")
+                    return student
+                } catch {
+                    print("Failed to load student: \(error)")
+                }
+            }
+            return nil
     }
+    
+    func saveStudentToUserDefaults(student: Student) {
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(student)
+            UserDefaults.standard.set(data, forKey: "savedStudent")
+            print("Student saved to UserDefaults.")
+        } catch {
+            print("Failed to save student: \(error)")
+        }
+    }
+
     
     func SignInStudent(for student:[String:Any]) async throws -> Student{
         let jsonData = try JSONSerialization.data(withJSONObject: student, options: [])
@@ -49,11 +71,12 @@ struct FetchService{
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        let studentData = try decoder.decode(Student.self, from: data)
-        print(studentData)
+        let studentObj = try decoder.decode(Student.self, from: data)
         
-        print(studentData)
-        return studentData
+        saveStudentToUserDefaults(student: studentObj)
+        
+        print(studentObj)
+        return studentObj
     }
     
     func fetchCourse(for jId:[String:Any]) async throws -> Course{
