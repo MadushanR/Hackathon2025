@@ -89,6 +89,22 @@
     ]
   },
   {
+    "ContainingType": "HackathonProject.Controllers.PlanController",
+    "Method": "GeneratePlan",
+    "RelativePath": "api/Plan/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "HackathonProject.Controllers.PlanRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "HackathonProject.Controllers.StudentController",
     "Method": "GetAllStudents",
     "RelativePath": "api/Student",
@@ -199,22 +215,6 @@
   },
   {
     "ContainingType": "HackathonProject.Controllers.StudentController",
-    "Method": "GeneratePlan",
-    "RelativePath": "api/Student/generate-plan",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "HackathonProject.Controllers.PlanRequestDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HackathonProject.Controllers.StudentController",
     "Method": "Login",
     "RelativePath": "api/Student/login",
     "HttpMethod": "POST",
@@ -224,6 +224,22 @@
       {
         "Name": "loginDto",
         "Type": "HackathonProject.Models.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HackathonProject.Controllers.StudentController",
+    "Method": "RegisterStudent",
+    "RelativePath": "api/Student/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newStudent",
+        "Type": "HackathonProject.Models.Student",
         "IsRequired": true
       }
     ],
