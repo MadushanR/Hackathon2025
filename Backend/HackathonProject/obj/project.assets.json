@@ -4432,23 +4432,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anand\\.nuget\\packages\\": {},
+    "C:\\Users\\madus\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\HackathonProject.csproj",
+      "projectUniqueName": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\HackathonProject.csproj",
       "projectName": "HackathonProject",
-      "projectPath": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\HackathonProject.csproj",
-      "packagesPath": "C:\\Users\\anand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\obj\\",
+      "projectPath": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\HackathonProject.csproj",
+      "packagesPath": "C:\\Users\\madus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\madus\\Desktop\\Hackathon2025\\Backend\\HackathonProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\anand\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\madus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4457,7 +4457,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4474,7 +4473,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -4526,7 +4525,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
