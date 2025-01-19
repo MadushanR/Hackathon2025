@@ -215,6 +215,22 @@
   },
   {
     "ContainingType": "HackathonProject.Controllers.StudentController",
+    "Method": "CalculateGpaBySemester",
+    "RelativePath": "api/Student/{studentId}/gpa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "studentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HackathonProject.Controllers.StudentController",
     "Method": "Login",
     "RelativePath": "api/Student/login",
     "HttpMethod": "POST",
