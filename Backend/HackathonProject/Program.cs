@@ -13,7 +13,7 @@ builder.Services.AddDbContext<DataContext>(
         sqlOptions => sqlOptions.EnableRetryOnFailure()
     ));
 
-var app = builder.Build();
+//var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -29,8 +29,17 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+// app.MapControllerRoute(
+// name: "default",
+// pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// app.Run();
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(80);
+});
+
+var app = builder.Build();
+app.MapGet("/", () => "Hello, World!");
 app.Run();
