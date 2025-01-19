@@ -36,6 +36,7 @@ namespace HackathonProject.Controllers
 
             // Return only the student object as a flat JSON response
             return Ok(newStudent);
+
         }
 
 
@@ -57,11 +58,12 @@ namespace HackathonProject.Controllers
                 return Unauthorized(new { error = "Invalid credentials. Please check your email and password." });
             }
 
-            return Ok(new
-            {
-                student
-            });
+
+            // Return the student object directly
+            return Ok(student);
+
         }
+
 
 
         [HttpGet]
@@ -125,6 +127,50 @@ namespace HackathonProject.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpGet("{studentId}/gpa")]
+        public async Task<IActionResult> CalculateGpaBySemester(int studentId)
+        {
+            // 1. Get all courses for the student
+            var courses = await _context.Courses
+                .Where(c => c.StudentId == studentId)
+                .ToListAsync();
+
+            if (courses == null || !courses.Any())
+            {
+                return NotFound(new { error = "No courses found for this student." });
+            }
+
+            // 2. Group courses by semester
+            var gpaBySemester = courses
+                .GroupBy(c => c.Semester)
+                .Select(group => new
+                {
+                    Semester = group.Key,
+                    GPA = CalculateGpa(group.ToList())
+                })
+                .ToList();
+
+            return Ok(gpaBySemester);
+        }
+
+        /// <summary>
+        /// Helper method to calculate GPA for a list of courses.
+        /// </summary>
+        private double CalculateGpa(List<Course> courses)
+        {
+            double totalGradePoints = 0;
+            int totalCredits = 0;
+
+            foreach (var course in courses)
+            {
+                totalGradePoints += course.Grade * course.Credits;
+                totalCredits += course.Credits;
+            }
+
+            return totalCredits > 0 ? totalGradePoints / totalCredits : 0;
+        }
+
     }
 
     public class LoginDto
