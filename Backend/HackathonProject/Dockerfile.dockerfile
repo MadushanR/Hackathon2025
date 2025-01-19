@@ -8,12 +8,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Correctly reference HackathonProject.csproj
-COPY ./HackathonProject/HackathonProject.csproj ./HackathonProject/
+COPY ./Backend/HackathonProject/HackathonProject.csproj ./HackathonProject/
 
-RUN dotnet restore "HackathonProject/HackathonProject.csproj"
+RUN dotnet restore "/HackathonProject/HackathonProject.csproj"
 
 # Copy all files from HackathonProject directory
-COPY ./HackathonProject/ ./HackathonProject/
+COPY ./Backend/HackathonProject/ ./HackathonProject/
 
 # Build the application
 WORKDIR "/src/HackathonProject"
