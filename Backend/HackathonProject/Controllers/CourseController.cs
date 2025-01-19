@@ -9,11 +9,11 @@ namespace HackathonProject.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CoursesController : ControllerBase
+    public class CourseController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public CoursesController(DataContext context)
+        public CourseController(DataContext context)
         {
             _context = context;
         }
