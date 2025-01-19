@@ -3,12 +3,10 @@
     "",
     "\\Backend",
     "\\Backend\\HackathonProject",
-    "\\Backend\\HackathonProject\\Controllers"
+    "\\Backend\\HackathonProject\\Controllers",
+    "\\Backend\\HackathonProject\\Models",
+    "\\Backend\\HackathonProject\\Properties"
   ],
-<<<<<<< HEAD
   "SelectedNode": "\\Backend\\HackathonProject\\Controllers\\CourseController.cs",
-=======
-  "SelectedNode": "\\.gitignore",
->>>>>>> main
   "PreviewInSolutionExplorer": false
 }
