@@ -7,12 +7,13 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Correctly reference HackathonProject.csproj
+# Copy the HackathonProject.csproj file first
 COPY ./Backend/HackathonProject/HackathonProject.csproj ./HackathonProject/
 
-RUN dotnet restore "/HackathonProject/HackathonProject.csproj"
+# Run dotnet restore to restore dependencies
+RUN dotnet restore "./HackathonProject/HackathonProject.csproj"
 
-# Copy all files from HackathonProject directory
+# Copy the rest of the HackathonProject source files
 COPY ./Backend/HackathonProject/ ./HackathonProject/
 
 # Build the application
@@ -26,5 +27,5 @@ RUN dotnet publish "HackathonProject.csproj" -c Release -o /app/publish
 # Final image with the published app
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app/publish . 
 ENTRYPOINT ["dotnet", "HackathonProject.dll"]
