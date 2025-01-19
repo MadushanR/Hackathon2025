@@ -28,5 +28,5 @@ jobs:
           gcloud run deploy aspnet-backend \
             --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/aspnet-backend \
             --platform managed \
-            --region [REGION] \
+            --region us-centrail1 \
             --allow-unauthenticated
