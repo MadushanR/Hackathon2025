@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUp: View {
+    let vm = SignUpVM()
     @Binding var changeView:Bool
     @State var firstName = ""
     @State var lastName = ""
@@ -109,6 +110,18 @@ struct SignUp: View {
         
         Button{
             // TODO: function for sending email and password while getting 200
+            Task{
+                await vm.getData(for: [
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "gpa":0,
+                    "dGpa":0,
+                    "id":studentId,
+                    "email":email,
+                    "password":password,
+                    "courses":nil
+                ])
+            }
         }label: {
             Text("Submit")
                 .font(.title3)
