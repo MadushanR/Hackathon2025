@@ -20,21 +20,98 @@ namespace HackathonProject.Controllers
             _config = config;
         }
 
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterStudent([FromBody] Student newStudent)
+        {
+            // 1. Basic validation: check if essential fields are provided
+            //    (Alternatively, use ModelState or data annotations)
+            if (string.IsNullOrWhiteSpace(newStudent.Email) ||
+                string.IsNullOrWhiteSpace(newStudent.Password))
+            {
+                return BadRequest(new
+                {
+                    error = "Email and Password are required."
+                });
+            }
+
+            // 2. Check if email already exists in DB
+            bool emailExists = await _context.Students
+                .AnyAsync(s => s.Email == newStudent.Email);
+
+            if (emailExists)
+            {
+                // Return a 400 with a JSON body
+                return BadRequest(new
+                {
+                    error = "A student with that email already exists."
+                });
+            }
+
+            // 3. Create the new student record
+            _context.Students.Add(newStudent);
+            await _context.SaveChangesAsync();
+
+            // 4. Return 201 Created with the newly created student in the response
+            return CreatedAtAction(
+                nameof(GetStudentById),
+                new { id = newStudent.StudentId },
+                new
+                {
+                    message = "Registration successful",
+                    student = newStudent
+                }
+            );
+        }
+
+        // ----------------------------
+        // POST: api/student/login
+        // ----------------------------
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            // Attempt to find a matching student by email
+            // 1. Validate email and password
+            if (string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Password))
+            {
+                return BadRequest(new
+                {
+                    error = "Email and Password are required."
+                });
+            }
+
+            // 2. Try to find a matching student by email
             var student = await _context.Students
                 .FirstOrDefaultAsync(s => s.Email == loginDto.Email);
 
+            // 3. Check if the student was found and the password matches
             if (student == null || student.Password != loginDto.Password)
             {
-                return Unauthorized("Invalid credentials");
+                return Unauthorized(new
+                {
+                    error = "Invalid credentials. Please check your email and password."
+                });
             }
 
-            // Generate a session if time permits
-            return Ok(new { message = "Login successful", studentId = student.StudentId });
+            // 4. If valid, return 200 with success message and both database and request details
+            return Ok(new
+            {
+                message = "Login successful",
+                studentId = student.StudentId,
+                studentFromDatabase = new
+                {
+                    student.FirstName,
+                    student.LastName,
+                    student.Email,
+                    student.GPA,
+                    student.DesiredGPA
+                },
+                studentFromRequest = new
+                {
+                    loginDto.Email,
+                    loginDto.Password
+                }
+            });
         }
+
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Student>>> GetAllStudents()
@@ -76,10 +153,10 @@ namespace HackathonProject.Controllers
             }
 
             // Update the allowed fields
-            existingStudent.Name = updatedStudentDto.Name;
+            existingStudent.FirstName = updatedStudentDto.FirstName;
+            existingStudent.LastName = updatedStudentDto.LastName;
             existingStudent.Email = updatedStudentDto.Email;
             existingStudent.Password = updatedStudentDto.Password;
-            existingStudent.SchoolName = updatedStudentDto.SchoolName;
             existingStudent.GPA = updatedStudentDto.GPA;
 
             // Save changes to the database
@@ -101,96 +178,7 @@ namespace HackathonProject.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
-        /// <summary>
-        /// POST: api/student/generate-plan
-        /// Generates an academic plan using OpenAI based on the provided GPA and credit information.
-        /// </summary>
-    //     [HttpPost("generate-plan")]
-    //     public async Task<IActionResult> GeneratePlan([FromBody] PlanRequestDto dto)
-    //     {
-    //         // 1. Check if the student exists
-    //         var student = await _context.Students.FindAsync(dto.StudentId);
-    //         if (student == null)
-    //         {
-    //             return NotFound($"No student found with ID = {dto.StudentId}");
-    //         }
-
-    //         // 2. Build an OpenAI prompt
-    //         string prompt = $"A student has a current GPA of {dto.CurrentGPA} " +
-    //                         $"and wants to achieve a GPA of {dto.DesiredGPA}. " +
-    //                         $"They need {dto.TotalCreditsNeeded} more credits to graduate. " +
-    //                         $"Provide a recommended academic plan including course suggestions and study strategies.";
-
-    //         // 3. Call OpenAI
-    //         string openAiResponse = await CallOpenAIAsync(prompt);
-
-    //         // 4. Return the AI-generated text directly
-    //         return Ok(new { planText = openAiResponse });
-    //     }
-
-    //     /// <summary>
-    //     /// Helper method to call OpenAI API.
-    //     /// </summary>
-    //     private async Task<string> CallOpenAIAsync(string prompt)
-    //     {
-    //         // 1. Retrieve API key from config
-    //         string apiKey = _config["OpenAI:ApiKey"];
-    //         if (string.IsNullOrEmpty(apiKey))
-    //         {
-    //             return "OpenAI API Key not configured.";
-    //         }
-
-    //         // 2. Create HttpClient
-    //         using var client = new HttpClient();
-    //         client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-
-    //         // 3. Build request body
-    //         var requestBody = new
-    //         {
-    //             model = "text-davinci-003",
-    //             prompt = prompt,
-    //             max_tokens = 150,
-    //             temperature = 0.7
-    //         };
-
-    //         // 4. Serialize to JSON
-    //         var jsonContent = new StringContent(
-    //             JsonSerializer.Serialize(requestBody),
-    //             Encoding.UTF8,
-    //             "application/json"
-    //         );
-
-    //         // 5. Post to OpenAI
-    //         var response = await client.PostAsync("https://api.openai.com/v1/completions", jsonContent);
-    //         var responseString = await response.Content.ReadAsStringAsync();
-
-    //         // 6. Check for success
-    //         if (!response.IsSuccessStatusCode)
-    //         {
-    //             return $"Error calling OpenAI API: {response.StatusCode}, {responseString}";
-    //         }
-
-    //         // 7. Parse the response
-    //         using var doc = JsonDocument.Parse(responseString);
-    //         var root = doc.RootElement;
-    //         var choices = root.GetProperty("choices");
-    //         var text = choices[0].GetProperty("text").GetString();
-
-    //         return text.Trim();
-    //     }
-    // }
-
-
-    // /// <summary>
-    // /// DTO for plan generation request.
-    // /// </summary>
-    // public class PlanRequestDto
-    // {
-    //     public int StudentId { get; set; }
-    //     public double CurrentGPA { get; set; }
-    //     public double DesiredGPA { get; set; }
-    //     public int TotalCreditsNeeded { get; set; }
-    // }
     }
+
 }
 
