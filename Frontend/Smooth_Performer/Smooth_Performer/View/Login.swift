@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Login: View {
     let vm = LogInVM()
+    @Binding var showSLView:Bool
     @Binding var changeView:Bool
     @State var email = ""
     @State var password = ""
@@ -78,7 +79,7 @@ struct Login: View {
             // TODO: function for sending email and password while getting 200
             if vm.validateFields(email: email, password: password){
                 Task{
-                    await vm.getData(for: [
+                    showSLView = await vm.getData(for: [
                         "email":email,
                         "password":password
                     ])
@@ -95,6 +96,11 @@ struct Login: View {
                 .cornerRadius(10)
                 .padding(.horizontal,30)
                 .padding(.top)
+        }
+        if !vm.commonError.isEmpty {
+            Text(vm.commonError)
+                .font(.caption)
+                .foregroundColor(.red)
         }
         
         HStack{
@@ -116,5 +122,5 @@ struct Login: View {
 }
 
 #Preview {
-    Login(changeView: .constant(true))
+    Login(showSLView: .constant(false), changeView: .constant(true))
 }

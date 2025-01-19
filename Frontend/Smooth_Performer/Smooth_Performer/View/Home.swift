@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Home: View {
+    let vm = HomeVM()
+    @Binding var showSLView:Bool
     var body: some View {
         ZStack{
             ScrollView{ // TODO: need a list view with a navigation view to make it more presentable
@@ -76,6 +78,7 @@ struct Home: View {
                 Spacer()
                 Button{
                     // TODO: function for adding Course
+                    showSLView = vm.signOut()
                 }label: {
                     Text("+ Add Course")
                         .font(.title3)
@@ -96,5 +99,5 @@ struct Home: View {
 }
 
 #Preview {
-    Home()
+    Home(showSLView: .constant(true))
 }

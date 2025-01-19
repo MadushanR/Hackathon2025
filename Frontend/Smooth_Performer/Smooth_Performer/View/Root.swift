@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct Root: View {
-    @State private var IsUser = true
+    @State private var showSLView = true
+    
     var body: some View {
         ZStack{
             NavigationStack{
-                HomeTab()
+                HomeTab(showSLView: $showSLView)
             }
         }
         .onAppear{
             let currentStudent = try? MainViewModel().getCurrentUser()
-            self.IsUser = currentStudent == nil
+            self.showSLView = currentStudent == nil
         }
-        .fullScreenCover(isPresented: $IsUser) {
+        .fullScreenCover(isPresented: $showSLView) {
             NavigationStack{
-                LSTab()
+                LSTab(showSLView: $showSLView)
             }
         }
     }

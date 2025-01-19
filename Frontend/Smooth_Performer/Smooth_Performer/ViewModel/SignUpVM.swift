@@ -21,13 +21,15 @@ class SignUpVM:ObservableObject{
     var emailError: String = ""
     var passwordError: String = ""
     
+    var commonError:String = ""
+    
     private(set) var status:FetchStatus = .notStarted
     
     private let fetcher = FetchService()
     
     var student: Student? = nil
     
-    func getData(for stu:[String:Any]) async {
+    func getData(for stu:[String:Any]) async -> Bool {
         status = .fetching
         print("Fetching from sign view model")
         
@@ -38,8 +40,11 @@ class SignUpVM:ObservableObject{
             
             status = .success
             print("success From signup VM")
+            return false
         }catch{
-            status = .failed(message: "somthing went wrong!")
+            commonError = "Email already exists"
+            status = .failed(message: "Email already Exists")
+            return true
         }
     }
     

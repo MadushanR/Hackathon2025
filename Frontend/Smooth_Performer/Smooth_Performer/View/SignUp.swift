@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUp: View {
     let vm = SignUpVM()
+    @Binding var showSLView:Bool
     @Binding var changeView: Bool
     @State var firstName = ""
     @State var lastName = ""
@@ -129,7 +130,7 @@ struct SignUp: View {
             Button {
                 if vm.validateFields(firstName: firstName, lastName: lastName, email: email, password: password) {
                     Task {
-                        await vm.getData(for: [
+                        showSLView = await vm.getData(for: [
                             "firstName": firstName,
                             "lastName": lastName,
                             "gpa": 0,
@@ -137,6 +138,7 @@ struct SignUp: View {
                             "email": email,
                             "password": password
                         ])
+                        
                     }
                 }
             } label: {
@@ -150,6 +152,12 @@ struct SignUp: View {
                     .cornerRadius(10)
                     .padding(.horizontal, 30)
                     .padding(.top)
+            }
+            if !vm.commonError.isEmpty {
+                Text(vm.commonError)
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .padding(.horizontal, 30)
             }
             
             // MARK: Log-In Redirect
@@ -172,5 +180,5 @@ struct SignUp: View {
 
 
 #Preview {
-    SignUp(changeView: .constant(false))
+    SignUp(showSLView: .constant(false), changeView: .constant(false))
 }

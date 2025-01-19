@@ -48,6 +48,18 @@ struct FetchService{
             print("Failed to save student: \(error)")
         }
     }
+    
+    func deleteStudentUserDefault(student: Student) -> Student? {
+        let key = "savedStudent"
+        if UserDefaults.standard.object(forKey: key) != nil {
+            UserDefaults.standard.removeObject(forKey: key)
+            print("Saved student data removed successfully.")
+        } else {
+            print("No saved student data found for key \(key).")
+        }
+        
+        return nil
+    }
 
     
     func signInStudent(for student:[String:Any]) async throws -> Student{
@@ -119,6 +131,13 @@ struct FetchService{
         print(studentObj)
         return studentObj
     }
+    
+    
+    
+    
+    
+    
+    
     
     func fetchCourse(for jId:[String:Any]) async throws -> Course{
         let jsonData = try JSONSerialization.data(withJSONObject: jId, options: [])

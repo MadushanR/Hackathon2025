@@ -27,7 +27,7 @@ class LogInVM:ObservableObject{
     
     var student: Student? = nil
     
-    func getData(for stu:[String:Any]) async {
+    func getData(for stu:[String:Any]) async -> Bool{
         status = .fetching
         print("Fetching from sign view model")
         
@@ -37,9 +37,12 @@ class LogInVM:ObservableObject{
             print("Fetched form signup VM")
             
             status = .success
-            print("success From signup VM")
+            print("success From login VM")
+            return false
         }catch{
-            status = .failed(message: "somthing went wrong!")
+            commonError = "User not found/Wrong Credentials"
+            status = .failed(message: "User not found/Wrong Credentials")
+            return true
         }
     }
     

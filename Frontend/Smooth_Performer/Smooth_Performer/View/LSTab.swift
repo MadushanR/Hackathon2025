@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct LSTab: View {
+    @Binding var showSLView:Bool
     @State var login = true
     var body: some View {
         if login{
-            Login(changeView: $login)
+            Login(showSLView: $showSLView, changeView: $login)
         }else{
-            SignUp(changeView: $login)
+            SignUp(showSLView: $showSLView, changeView: $login)
         }
     }
 }
 
 #Preview {
-    LSTab()
+    LSTab(showSLView: .constant(false))
 }

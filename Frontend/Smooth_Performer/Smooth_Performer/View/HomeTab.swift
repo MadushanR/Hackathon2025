@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeTab: View {
+    @Binding var showSLView:Bool
     var body: some View {
         TabView {
-            Home()
+            Home(showSLView: $showSLView)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
@@ -27,5 +28,5 @@ struct HomeTab: View {
 }
 
 #Preview {
-    HomeTab()
+    HomeTab(showSLView: .constant(true))
 }
