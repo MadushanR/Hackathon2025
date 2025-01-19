@@ -25,6 +25,6 @@ RUN dotnet publish "HackathonProject.csproj" -c Release -o /app/publish
 
 # Final image with the published app
 FROM base AS final
-WORKDIR /app
+WORKDIR /your-app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "HackathonProject.dll"]
