@@ -57,7 +57,6 @@ namespace HackathonProject.Controllers
                 new { id = newStudent.StudentId },
                 new
                 {
-                    message = "Registration successful",
                     student = newStudent
                 }
             );
@@ -69,48 +68,21 @@ namespace HackathonProject.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            // 1. Validate email and password
             if (string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Password))
             {
-                return BadRequest(new
-                {
-                    error = "Email and Password are required."
-                });
+                return BadRequest(new { error = "Email and Password are required." });
             }
 
-            // 2. Try to find a matching student by email
-            var student = await _context.Students
-                .FirstOrDefaultAsync(s => s.Email == loginDto.Email);
-
-            // 3. Check if the student was found and the password matches
+            var student = await _context.Students.FirstOrDefaultAsync(s => s.Email == loginDto.Email);
             if (student == null || student.Password != loginDto.Password)
             {
-                return Unauthorized(new
-                {
-                    error = "Invalid credentials. Please check your email and password."
-                });
+                return Unauthorized(new { error = "Invalid credentials. Please check your email and password." });
             }
 
-            // 4. If valid, return 200 with success message and both database and request details
-            return Ok(new
-            {
-                message = "Login successful",
-                studentId = student.StudentId,
-                studentFromDatabase = new
-                {
-                    student.FirstName,
-                    student.LastName,
-                    student.Email,
-                    student.GPA,
-                    student.DesiredGPA
-                },
-                studentFromRequest = new
-                {
-                    loginDto.Email,
-                    loginDto.Password
-                }
-            });
+            // Return the student object directly
+            return Ok(student);
         }
+
 
 
         [HttpGet]
@@ -178,6 +150,50 @@ namespace HackathonProject.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpGet("{studentId}/gpa")]
+        public async Task<IActionResult> CalculateGpaBySemester(int studentId)
+        {
+            // 1. Get all courses for the student
+            var courses = await _context.Courses
+                .Where(c => c.StudentId == studentId)
+                .ToListAsync();
+
+            if (courses == null || !courses.Any())
+            {
+                return NotFound(new { error = "No courses found for this student." });
+            }
+
+            // 2. Group courses by semester
+            var gpaBySemester = courses
+                .GroupBy(c => c.Semester)
+                .Select(group => new
+                {
+                    Semester = group.Key,
+                    GPA = CalculateGpa(group.ToList())
+                })
+                .ToList();
+
+            return Ok(gpaBySemester);
+        }
+
+        /// <summary>
+        /// Helper method to calculate GPA for a list of courses.
+        /// </summary>
+        private double CalculateGpa(List<Course> courses)
+        {
+            double totalGradePoints = 0;
+            int totalCredits = 0;
+
+            foreach (var course in courses)
+            {
+                totalGradePoints += course.Grade * course.Credits;
+                totalCredits += course.Credits;
+            }
+
+            return totalCredits > 0 ? totalGradePoints / totalCredits : 0;
+        }
+
     }
 
 }
