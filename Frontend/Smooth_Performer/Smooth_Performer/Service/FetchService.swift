@@ -26,7 +26,7 @@ struct FetchService{
         
     }
     
-    func fetchStudent(for student:[String:Any]) async throws -> Student{
+    func SignInStudent(for student:[String:Any]) async throws -> Student{
         let jsonData = try JSONSerialization.data(withJSONObject: student, options: [])
             
         guard let url = baseURL else {

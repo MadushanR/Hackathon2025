@@ -27,7 +27,7 @@ class SignUpVM{
         print("Still fetching")
         
         do{
-            student = try await fetcher.fetchStudent(for: stu)
+            student = try await fetcher.SignInStudent(for: stu)
             
             print("Fetched")
             
