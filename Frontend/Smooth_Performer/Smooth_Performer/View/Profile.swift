@@ -16,8 +16,8 @@ struct Profile: View {
                 VStack(alignment: .leading){
                     Text("\(student.firstName) \(student.lastName)")
                         .font(.largeTitle)
-                    Text("\(student.id)")
-                        .font(.title2)
+//                    Text("\(student.id)")
+//                        .font(.title2)
                 }
                 Spacer()
             }

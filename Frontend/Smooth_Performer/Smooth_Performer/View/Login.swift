@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Login: View {
+    let vm = LogInVM()
     @Binding var changeView:Bool
     @State var email = ""
     @State var password = ""
@@ -47,6 +48,11 @@ struct Login: View {
             )
             .padding(.horizontal,30)
             .padding(.top,9)
+        if !vm.emailError.isEmpty {
+            Text(vm.emailError)
+                .font(.caption)
+                .foregroundColor(.red)
+        }
         
         // MARK: password
         SecureField("Password",text: $password)
@@ -62,9 +68,22 @@ struct Login: View {
             )
             .padding(.horizontal,30)
             .padding(.top,9)
+        if !vm.passwordError.isEmpty {
+            Text(vm.passwordError)
+                .font(.caption)
+                .foregroundColor(.red)
+        }
         
         Button{
             // TODO: function for sending email and password while getting 200
+            if vm.validateFields(email: email, password: password){
+                Task{
+                    await vm.getData(for: [
+                        "email":email,
+                        "password":password
+                    ])
+                }
+            }
         }label: {
             Text("Login")
                 .font(.title3)

@@ -1,14 +1,14 @@
 //
-//  SignUpVM.swift
+//  LogInVM.swift
 //  Smooth_Performer
 //
-//  Created by Digaant Dogra on 2025-01-18.
+//  Created by Digaant Dogra on 2025-01-19.
 //
 
 import Foundation
 
 @Observable
-class SignUpVM:ObservableObject{
+class LogInVM:ObservableObject{
     enum FetchStatus{
         case notStarted
         case fetching
@@ -16,10 +16,10 @@ class SignUpVM:ObservableObject{
         case failed(message: String)
     }
     
-    var firstNameError: String = ""
-    var lastNameError: String = ""
     var emailError: String = ""
     var passwordError: String = ""
+    
+    var commonError:String = ""
     
     private(set) var status:FetchStatus = .notStarted
     
@@ -33,7 +33,7 @@ class SignUpVM:ObservableObject{
         
         do{
             print("Just before vm function")
-            student = try await fetcher.signInStudent(for: stu)
+            student = try await fetcher.loginInStudent(for: stu)
             print("Fetched form signup VM")
             
             status = .success
@@ -43,24 +43,8 @@ class SignUpVM:ObservableObject{
         }
     }
     
-    func validateFields(firstName: String, lastName: String, email: String, password: String) -> Bool {
+    func validateFields(email: String, password: String) -> Bool {
             var isValid = true
-            
-            // First Name Validation
-            if firstName.isEmpty {
-                firstNameError = "First name is required."
-                isValid = false
-            } else {
-                firstNameError = ""
-            }
-            
-            // Last Name Validation
-            if lastName.isEmpty {
-                lastNameError = "Last name is required."
-                isValid = false
-            } else {
-                lastNameError = ""
-            }
             
             // Email Validation
             if email.isEmpty {

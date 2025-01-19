@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Root: View {
-    @State private var IsUser = false
+    @State private var IsUser = true
     var body: some View {
         ZStack{
             NavigationStack{

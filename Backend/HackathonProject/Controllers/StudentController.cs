@@ -7,7 +7,7 @@ using System.Text;
 namespace HackathonProject.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/student")]
     public class StudentController : ControllerBase
     {
         private readonly DataContext _context;

@@ -7,41 +7,41 @@
 
 import Foundation
 
-struct Student: Identifiable,Codable{
+struct Student: Codable{
     let firstName:String
     let lastName:String
-    let id:Int
+    let studentId:Int
     let email:String
     let password:String
     let gpa:Int
-    let dGpa:Int
+    let desiredGPA:Int
     var courses:[Course]?
     
-    enum StudentJson:String,CodingKey{
-        case student
-        enum StudentKeys:String,CodingKey{
-            case firstName
-            case lastName
-            case id = "studentId"
-            case email
-            case password
-            case gpa
-            case dGpa = "desiredGPA"
-            case courses
-        }
+//    var id = {Student.self}
+    
+    
+    
+    enum StudentKeys:String,CodingKey{
+        case firstName
+        case lastName
+        case studentId
+        case email
+        case password
+        case gpa
+        case desiredGPA
+        case courses
     }
     
     init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: StudentJson.self)
-        let studentContainer = try container.nestedContainer(keyedBy: StudentJson.StudentKeys.self, forKey: .student)
+        let studentContainer = try decoder.container(keyedBy: StudentKeys.self)
         
         self.firstName = try studentContainer.decode(String.self, forKey: .firstName)
         self.lastName = try studentContainer.decode(String.self, forKey: .lastName)
-        self.id = try studentContainer.decode(Int.self, forKey: .id)
+        self.desiredGPA = try studentContainer.decode(Int.self, forKey: .desiredGPA)
+        self.studentId = try studentContainer.decode(Int.self, forKey: .studentId)
         self.email = try studentContainer.decode(String.self, forKey: .email)
         self.password = try studentContainer.decode(String.self, forKey: .password)
         self.gpa = try studentContainer.decode(Int.self, forKey: .gpa)
-        self.dGpa = try studentContainer.decode(Int.self, forKey: .dGpa)
         self.courses = try studentContainer.decodeIfPresent([Course].self, forKey: .courses)
     }
     

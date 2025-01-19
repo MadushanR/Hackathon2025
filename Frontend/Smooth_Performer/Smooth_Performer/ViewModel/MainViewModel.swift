@@ -7,6 +7,7 @@
 
 import Foundation
 
+@Observable
 final class MainViewModel{
     enum FetchStatus{
         case notStarted
@@ -23,15 +24,15 @@ final class MainViewModel{
     
     func getCurrentUser() throws ->Student? {
         status = .fetching
-        print("Still fetching")
+        print("Still fetching in main")
         
         do{
             student = try fetcher.fetchCurrentStudent()
+            print("Fetched from main")
             
-            print("Fetched")
-            
+            print(student)
             status = .success
-            print("success")
+            print("success from main")
         }catch{
             status = .failed(message: "somthing went wrong!")
         }

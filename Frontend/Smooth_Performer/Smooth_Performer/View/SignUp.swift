@@ -78,28 +78,6 @@ struct SignUp: View {
             }
             .padding(.horizontal)
             
-            // MARK: Student ID
-            VStack(alignment: .leading) {
-                TextField("Student ID", text: $studentId)
-                    .keyboardType(.numberPad)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 2)
-                            .opacity(0.4)
-                    )
-                    .padding(.horizontal, 30)
-                    .padding(.top, 9)
-                if !vm.studentIdError.isEmpty {
-                    Text(vm.studentIdError)
-                        .font(.caption)
-                        .foregroundColor(.red)
-                        .padding(.horizontal, 30)
-                }
-            }
-            
             // MARK: Email
             VStack(alignment: .leading) {
                 TextField("Email", text: $email)
@@ -149,17 +127,15 @@ struct SignUp: View {
             
             // MARK: Submit Button
             Button {
-                if vm.validateFields(firstName: firstName, lastName: lastName, email: email, password: password, studentId: studentId) {
+                if vm.validateFields(firstName: firstName, lastName: lastName, email: email, password: password) {
                     Task {
                         await vm.getData(for: [
                             "firstName": firstName,
                             "lastName": lastName,
                             "gpa": 0,
-                            "dGpa": 0,
-                            "id": studentId,
+                            "desiredGPA": 0,
                             "email": email,
-                            "password": password,
-                            "courses": nil
+                            "password": password
                         ])
                     }
                 }
