@@ -34,20 +34,9 @@ namespace HackathonProject.Controllers
             _context.Students.Add(newStudent);
             await _context.SaveChangesAsync();
 
-<<<<<<< HEAD
-            // 4. Return 201 Created with the newly created student in the response
-            return CreatedAtAction(
-                nameof(GetStudentById),
-                new { id = newStudent.StudentId },
-                new
-                {
-                    student = newStudent
-                }
-            );
-=======
             // Return only the student object as a flat JSON response
             return Ok(newStudent);
->>>>>>> main
+
         }
 
 
@@ -69,15 +58,10 @@ namespace HackathonProject.Controllers
                 return Unauthorized(new { error = "Invalid credentials. Please check your email and password." });
             }
 
-<<<<<<< HEAD
+
             // Return the student object directly
             return Ok(student);
-=======
-            return Ok(new
-            {
-                student
-            });
->>>>>>> main
+
         }
 
 
