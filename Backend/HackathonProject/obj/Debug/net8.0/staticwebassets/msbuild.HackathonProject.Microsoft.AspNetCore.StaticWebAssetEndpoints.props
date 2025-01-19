@@ -28,13 +28,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\HackathonProject.5yp8oed39u.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"5yp8oed39u"},{"Name":"integrity","Value":"sha256-XdXht6qsmbQgjKpny7Ftm47pJCskbdFHg\u002BmU3cz5TRQ="},{"Name":"label","Value":"_content/HackathonProject/HackathonProject.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XdXht6qsmbQgjKpny7Ftm47pJCskbdFHg\u002BmU3cz5TRQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 09:09:23 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XdXht6qsmbQgjKpny7Ftm47pJCskbdFHg\u002BmU3cz5TRQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 10:50:30 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HackathonProject/HackathonProject.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\HackathonProject.5yp8oed39u.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XdXht6qsmbQgjKpny7Ftm47pJCskbdFHg\u002BmU3cz5TRQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XdXht6qsmbQgjKpny7Ftm47pJCskbdFHg\u002BmU3cz5TRQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 09:09:23 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XdXht6qsmbQgjKpny7Ftm47pJCskbdFHg\u002BmU3cz5TRQ=\u0022"},{"Name":"Last-Modified","Value":"Sun, 19 Jan 2025 10:50:30 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HackathonProject/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>

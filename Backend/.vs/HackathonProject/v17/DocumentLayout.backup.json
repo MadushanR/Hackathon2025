@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,24 +23,12 @@
       "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\models\\updatecoursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\migrations\\20250119033551_im.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\migrations\\20250119033551_im.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|solutionrelative:hackathonproject\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53FDE8B4-D95D-4229-8424-D98180FD01D6}|HackathonProject\\HackathonProject.csproj|c:\\users\\anand\\downloads\\hackathon2025\\backend\\hackathonproject\\controllers\\plancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -69,12 +69,8 @@
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "20250119033551_IM.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Migrations\\20250119033551_IM.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Migrations\\20250119033551_IM.cs",
@@ -86,44 +82,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Models\\Student.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Models\\Student.cs",
               "ToolTip": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Models\\Student.cs",
               "RelativeToolTip": "HackathonProject\\Models\\Student.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T22:06:15.173Z"
+              "WhenOpened": "2025-01-18T22:06:15.173Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Models\\Course.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Models\\Course.cs",
               "ToolTip": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Models\\Course.cs",
               "RelativeToolTip": "HackathonProject\\Models\\Course.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T22:47:23.726Z"
+              "WhenOpened": "2025-01-18T22:47:23.726Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "StudentController.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Controllers\\StudentController.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Controllers\\StudentController.cs",
               "ToolTip": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Controllers\\StudentController.cs",
               "RelativeToolTip": "HackathonProject\\Controllers\\StudentController.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAzwE4AAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwD8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-18T23:19:09.898Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "UpdateCourseDto.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Models\\UpdateCourseDto.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Models\\UpdateCourseDto.cs",
@@ -131,24 +129,28 @@
               "RelativeToolTip": "HackathonProject\\Models\\UpdateCourseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T23:55:36.181Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-18T23:55:36.181Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Controllers\\CourseController.cs",
               "ToolTip": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Controllers\\CourseController.cs",
               "RelativeToolTip": "HackathonProject\\Controllers\\CourseController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwBwAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T22:51:43.552Z"
+              "WhenOpened": "2025-01-18T22:51:43.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\anand\\Downloads\\Hackathon2025\\Backend\\HackathonProject\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "HackathonProject\\Controllers\\HomeController.cs",

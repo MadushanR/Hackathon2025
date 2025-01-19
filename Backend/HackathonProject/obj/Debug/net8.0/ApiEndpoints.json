@@ -1,8 +1,8 @@
 [
   {
-    "ContainingType": "HackathonProject.Controllers.CoursesController",
+    "ContainingType": "HackathonProject.Controllers.CourseController",
     "Method": "AddCourse",
-    "RelativePath": "api/Courses",
+    "RelativePath": "api/Course",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -26,9 +26,9 @@
     ]
   },
   {
-    "ContainingType": "HackathonProject.Controllers.CoursesController",
+    "ContainingType": "HackathonProject.Controllers.CourseController",
     "Method": "EditCourse",
-    "RelativePath": "api/Courses/{id}",
+    "RelativePath": "api/Course/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -47,9 +47,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HackathonProject.Controllers.CoursesController",
+    "ContainingType": "HackathonProject.Controllers.CourseController",
     "Method": "DeleteCourse",
-    "RelativePath": "api/Courses/{id}",
+    "RelativePath": "api/Course/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -63,9 +63,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "HackathonProject.Controllers.CoursesController",
+    "ContainingType": "HackathonProject.Controllers.CourseController",
     "Method": "GetCourses",
-    "RelativePath": "api/Courses/{studentId}",
+    "RelativePath": "api/Course/{studentId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -191,7 +191,7 @@
       },
       {
         "Name": "updatedStudentDto",
-        "Type": "HackathonProject.Models.UpdateStudentDto",
+        "Type": "HackathonProject.Controllers.UpdateStudentDto",
         "IsRequired": true
       }
     ],
@@ -239,7 +239,7 @@
     "Parameters": [
       {
         "Name": "loginDto",
-        "Type": "HackathonProject.Models.LoginDto",
+        "Type": "HackathonProject.Controllers.LoginDto",
         "IsRequired": true
       }
     ],
