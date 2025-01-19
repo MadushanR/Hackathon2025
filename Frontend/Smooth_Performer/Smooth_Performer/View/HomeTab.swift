@@ -16,7 +16,7 @@ struct HomeTab: View {
                     Text("Home")
                 }
             
-            Text("User Profile")
+            Profile(student: FetchService().student!)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("User")
