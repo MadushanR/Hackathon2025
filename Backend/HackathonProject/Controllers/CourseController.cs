@@ -22,21 +22,27 @@ namespace HackathonProject.Controllers
         [HttpGet("{studentId}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourses(int studentId)
         {
-            // Filter courses by the studentId and include student details if needed.
-            var courses = await _context.Courses
-                                        .Where(c => c.StudentId == studentId)
-                                        .Include(c => c.Student)
-                                        .ToListAsync();
-
-            if (courses == null || !courses.Any())
+            try
             {
-                return NotFound($"No courses found for student with ID {studentId}.");
+                var courses = await _context.Courses
+                                    .Where(c => c.StudentId == studentId)
+                                  //  .Include(c => c.Student)
+                                    .ToListAsync();
+
+                if (courses == null || !courses.Any())
+                {
+                    return NotFound($"No courses found for student with ID {studentId}.");
+                }
+
+                return Ok(courses);
             }
-
-            return Ok(courses);
-        }
-
-      
+            catch (Exception ex)
+            {
+                // Log exception details (replace Console.WriteLine with your logging framework as needed)
+                Console.WriteLine($"Error in GetCourses: {ex.Message}");
+                return StatusCode(500, new { error = "An error occurred while retrieving courses.", details = ex.Message });
+            }
+}
 
         [HttpPost]
         public async Task<ActionResult<Course>> AddCourse([FromBody] CreateCourseDto courseDto)
