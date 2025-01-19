@@ -1,6 +1,8 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/vernal-guide-448217-j7/your-app', 'backend/hackathonproject']
+    args: ['build', '-t', 'gcr.io/vernal-guide-448217-j7/your-app', '-f', 'Backend/HackathonProject/Dockerfile.dockerfile', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/vernal-guide-448217-j7/your-app']
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'your-app',
            '--image', 'gcr.io/vernal-guide-448217-j7/your-app',
@@ -10,3 +12,5 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 timeout: '900s'
+
+
