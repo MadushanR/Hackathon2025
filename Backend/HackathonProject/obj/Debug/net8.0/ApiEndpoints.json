@@ -191,7 +191,7 @@
       },
       {
         "Name": "updatedStudentDto",
-        "Type": "HackathonProject.Models.UpdateStudentDto",
+        "Type": "HackathonProject.Controllers.UpdateStudentDto",
         "IsRequired": true
       }
     ],
@@ -223,7 +223,7 @@
     "Parameters": [
       {
         "Name": "loginDto",
-        "Type": "HackathonProject.Models.LoginDto",
+        "Type": "HackathonProject.Controllers.LoginDto",
         "IsRequired": true
       }
     ],
