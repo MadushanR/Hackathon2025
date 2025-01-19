@@ -9,9 +9,22 @@ import SwiftUI
 
 @main
 struct Smooth_PerformerApp: App {
+    @State var IsUser = false
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack{
+                NavigationStack{
+                    HomeTab()
+                }
+            }
+            .onAppear{
+                
+            }
+            .fullScreenCover(isPresented: $IsUser) {
+                NavigationStack{
+                    LSTab()
+                }
+            }
         }
     }
 }
