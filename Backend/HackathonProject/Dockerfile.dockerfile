@@ -1,23 +1,30 @@
-# Use the official ASP.NET Core runtime as a base image
+# Use the official .NET image from Microsoft for the base image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
-# Use the .NET SDK image for building the app
+# Use the SDK image for building
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy only the .csproj file and restore dependencies
-COPY ["HackathonProject.csproj", "./"]
-RUN dotnet restore
+# Correctly reference HackathonProject.csproj
+COPY ./HackathonProject/HackathonProject.csproj ./HackathonProject/
 
-# Copy the rest of the application and build
-COPY . .
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet restore "HackathonProject/HackathonProject.csproj"
 
-# Final stage: Use the runtime image
+# Copy all files from HackathonProject directory
+COPY ./HackathonProject/ ./HackathonProject/
+
+# Build the application
+WORKDIR "/src/HackathonProject"
+RUN dotnet build "HackathonProject.csproj" -c Release -o /app/build
+
+# Publish the application
+FROM build AS publish
+RUN dotnet publish "HackathonProject.csproj" -c Release -o /app/publish
+
+# Final image with the published app
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "HackathonProject.dll"]
