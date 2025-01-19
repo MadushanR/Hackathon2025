@@ -20,7 +20,7 @@ struct Home: View {
                     }
                     .font(.largeTitle)
                     .padding(.leading,30)
-                    .padding(.top,50)
+                    .padding(.top,30)
                     
                     HStack{
                         Text("Current GPA:")
