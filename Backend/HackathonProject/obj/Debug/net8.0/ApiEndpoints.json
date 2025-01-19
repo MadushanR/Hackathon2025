@@ -8,8 +8,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "course",
-        "Type": "HackathonProject.Models.Course",
+        "Name": "courseDto",
+        "Type": "HackathonProject.Models.CreateCourseDto",
         "IsRequired": true
       }
     ],
@@ -39,8 +39,8 @@
         "IsRequired": true
       },
       {
-        "Name": "course",
-        "Type": "HackathonProject.Models.Course",
+        "Name": "updatedCourseDto",
+        "Type": "HackathonProject.Models.UpdateCourseDto",
         "IsRequired": true
       }
     ],
@@ -192,6 +192,22 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HackathonProject.Controllers.StudentController",
+    "Method": "GeneratePlan",
+    "RelativePath": "api/Student/generate-plan",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "HackathonProject.Controllers.PlanRequestDto",
         "IsRequired": true
       }
     ],
