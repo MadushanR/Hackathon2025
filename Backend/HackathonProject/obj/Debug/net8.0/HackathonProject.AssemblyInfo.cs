@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HackathonProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+206af233e7ba5bd9ddead0530be29bbb577053ec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8c9b1e37bb58e71cc95f6c218fb9c8a503b48aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("HackathonProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HackathonProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

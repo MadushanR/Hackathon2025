@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HackathonProject.Models;
-
+    
 namespace HackathonProject.Controllers
 {
     [ApiController]
@@ -22,51 +22,71 @@ namespace HackathonProject.Controllers
         [HttpGet("{studentId}")]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourses(int studentId)
         {
-            // Filter courses by the studentId
+            // Filter courses by the studentId and include student details if needed.
             var courses = await _context.Courses
-                                        .Where(c => c.StudentId == studentId)  // Filter by studentId
-                                        .Include(c => c.Student)  // Include student details
+                                        .Where(c => c.StudentId == studentId)
+                                        .Include(c => c.Student)
                                         .ToListAsync();
 
-            // If no courses found, return NotFound
             if (courses == null || !courses.Any())
             {
                 return NotFound($"No courses found for student with ID {studentId}.");
             }
 
-            // Return the courses for the specified student
-            return Ok(courses); // Use Ok() to return the list of courses
+            return Ok(courses);
         }
 
         // POST: api/Courses
         [HttpPost]
-        public async Task<ActionResult<Course>> AddCourse(Course course)
+        public async Task<ActionResult<Course>> AddCourse([FromBody] CreateCourseDto courseDto)
         {
-            if (!_context.Students.Any(s => s.StudentId == course.StudentId))
+            // Verify that the student exists
+            if (!_context.Students.Any(s => s.StudentId == courseDto.StudentId))
             {
                 return BadRequest("Invalid StudentId.");
             }
 
+            // Map the DTO to a new Course entity
+            var course = new Course
+            {
+                CourseName = courseDto.CourseName,
+                Semester = courseDto.Semester,
+                SectionId = courseDto.SectionId,
+                Credits = courseDto.Credits,
+                Grade = courseDto.Grade,
+                StudentId = courseDto.StudentId
+            };
+
             _context.Courses.Add(course);
             await _context.SaveChangesAsync();
 
-            // Use GetCourses instead of GetCourse to match the method
             return CreatedAtAction(nameof(GetCourses), new { studentId = course.StudentId }, course);
         }
 
         // PUT: api/Courses/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditCourse(int id, Course course)
+        public async Task<IActionResult> EditCourse(int id, [FromBody] UpdateCourseDto updatedCourseDto)
         {
-            if (id != course.CourseId)
+            // Retrieve the existing course from the database
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            if (!_context.Students.Any(s => s.StudentId == course.StudentId))
+            // Optional: Verify that the provided StudentId is valid
+            if (!_context.Students.Any(s => s.StudentId == updatedCourseDto.StudentId))
             {
                 return BadRequest("Invalid StudentId.");
             }
+
+            // Map updated fields from the DTO to the course entity
+            course.CourseName = updatedCourseDto.CourseName;
+            course.Semester = updatedCourseDto.Semester;
+            course.SectionId = updatedCourseDto.SectionId;
+            course.Credits = updatedCourseDto.Credits;
+            course.Grade = updatedCourseDto.Grade;
+            course.StudentId = updatedCourseDto.StudentId;
 
             _context.Entry(course).State = EntityState.Modified;
 
@@ -86,8 +106,9 @@ namespace HackathonProject.Controllers
                 }
             }
 
-            return NoContent(); // Returns No Content if update is successful
+            return NoContent();
         }
+
 
         // DELETE: api/Courses/{id}
         [HttpDelete("{id}")]
@@ -102,7 +123,7 @@ namespace HackathonProject.Controllers
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
 
-            return NoContent(); // Returns No Content after successful deletion
+            return NoContent(); // Returns 204 No Content after successful deletion
         }
 
         private bool CourseExists(int id)
