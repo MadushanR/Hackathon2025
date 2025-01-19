@@ -42,35 +42,7 @@ namespace HackathonProject.Controllers
                 Console.WriteLine($"Error in GetCourses: {ex.Message}");
                 return StatusCode(500, new { error = "An error occurred while retrieving courses.", details = ex.Message });
             }
-        }
-
-
-        // POST: api/Courses
-        [HttpPost]
-        public async Task<ActionResult<Course>> AddCourse([FromBody] CreateCourseDto courseDto)
-        {
-            // Verify that the student exists
-            if (!_context.Students.Any(s => s.StudentId == courseDto.StudentId))
-            {
-                return BadRequest("Invalid StudentId.");
-            }
-
-            // Map the DTO to a new Course entity
-            var course = new Course
-            {
-                CourseName = courseDto.CourseName,
-                Semester = courseDto.Semester,
-                SectionId = courseDto.SectionId,
-                Credits = courseDto.Credits,
-                Grade = courseDto.Grade,
-                StudentId = courseDto.StudentId
-            };
-
-            _context.Courses.Add(course);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetCourses), new { studentId = course.StudentId }, course);
-        }
+}
 
         [HttpPost]
         public async Task<ActionResult<Course>> AddCourse([FromBody] CreateCourseDto courseDto)
