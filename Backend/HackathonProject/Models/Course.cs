@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace HackathonProject.Models
 {
@@ -18,6 +19,7 @@ namespace HackathonProject.Models
 
         // Navigation Property
         [ForeignKey("StudentId")]
+        [JsonIgnore]
         public Student Student { get; set; }
     }
 }
