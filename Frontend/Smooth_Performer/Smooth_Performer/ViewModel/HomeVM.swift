@@ -26,22 +26,38 @@ class HomeVM:ObservableObject{
     
     func signOut() -> Bool{
         status = .fetching
-        print("Fetching from home view model")
         
         do{
-            print("Just before vm function")
             if let currentUser = try fetcher.fetchCurrentStudent(){
                 student = fetcher.deleteStudentUserDefault(student: currentUser)
             }
-            print("Fetched form signup VM")
             
             status = .success
-            print("success From home VM")
             return true
         }catch{
             status = .failed(message: "User not found/Wrong Credentials")
             return false
         }
+    }
+    
+    func addCourses(id:Int) async -> [Course]{
+        var course:[Course]
+        status = .fetching
+        print("Fetching from home view model course")
+        
+        do{
+            print("Just before vm function course")
+            course = try await fetcher.fetchCourse(for: id)
+            print("Fetched form home VM course")
+            
+            status = .success
+            print("success From home VM course")
+            return course
+        }catch{
+            status = .failed(message: "User not found/Wrong Credentials")
+            return []
+        }
+        
     }
 
 }

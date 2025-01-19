@@ -1,8 +1,10 @@
-    {
-        "studentId":1,
-        "firstName":"Digaant",
-        "lastName":"Dogra",
-        "email":"dogradig@sheridancollege.ca",
-        "password":"sheridan@1234",
-        "courses":null
-    }
+{
+    "studentId": 19,
+    "firstName": "Digaant",
+    "lastName": "Dogra",
+    "email": "digaant@dogra.com",
+    "password": "1234567a",
+    "gpa": 0,
+    "desiredGPA": 0,
+    "courses": []
+}

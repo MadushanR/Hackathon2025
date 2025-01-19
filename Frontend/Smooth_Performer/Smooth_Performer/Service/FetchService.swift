@@ -14,7 +14,6 @@ struct FetchService{
     
     init() {
         fetchStudentJson()
-        fetchCoursesJson()
     }
     
     private(set) var student:Student?
@@ -27,8 +26,6 @@ struct FetchService{
                 let decoder = JSONDecoder()
                 do {
                     let student = try decoder.decode(Student.self, from: data)
-                    print(student)
-                    print("Student loaded from UserDefaults.")
                     return student
                 } catch {
                     print("Failed to load student: \(error)")
@@ -42,8 +39,6 @@ struct FetchService{
         do {
             let data = try encoder.encode(student)
             UserDefaults.standard.set(data, forKey: "savedStudent")
-            print(student)
-            print("Student saved to UserDefaults.")
         } catch {
             print("Failed to save student: \(error)")
         }
@@ -53,7 +48,6 @@ struct FetchService{
         let key = "savedStudent"
         if UserDefaults.standard.object(forKey: key) != nil {
             UserDefaults.standard.removeObject(forKey: key)
-            print("Saved student data removed successfully.")
         } else {
             print("No saved student data found for key \(key).")
         }
@@ -70,21 +64,17 @@ struct FetchService{
         }
         
         let createStudentURL = url.appending(path: "api/student/register") // MARK: api/Student -> endpoint
-        print("Request URL: \(createStudentURL)")
         
         var request = URLRequest(url: createStudentURL)
         request.httpMethod = "POST" // MARK: Specify HTTP method (POST)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type") // Set Content-Type header
         request.httpBody = jsonData // MARK: Sending json in the reques
-        print("request is good")
         
         let (data, response) = try await URLSession.shared.data(for: request) // making a tuple
-        print("\(data)")
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{ // this is gonna give us urlResponse
             throw FetchError.badResponse
         }
-        print("\(response.statusCode)")
         
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -93,7 +83,6 @@ struct FetchService{
         
         saveStudentToUserDefaults(student: studentObj)
 
-        print(studentObj)
         return studentObj
     }
     
@@ -105,21 +94,17 @@ struct FetchService{
         }
         
         let createStudentURL = url.appending(path: "api/student/login") // MARK: api/Student -> endpoint
-        print("Request URL: \(createStudentURL)")
         
         var request = URLRequest(url: createStudentURL)
         request.httpMethod = "POST" // MARK: Specify HTTP method (POST)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type") // Set Content-Type header
-        request.httpBody = jsonData // MARK: Sending json in the reques
-        print("request is good")
+        request.httpBody = jsonData // MARK: Sending json in the request
         
         let (data, response) = try await URLSession.shared.data(for: request) // making a tuple
-        print("\(data)")
         
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{ // this is gonna give us urlResponse
             throw FetchError.badResponse
         }
-        print("\(response.statusCode)")
         
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -128,33 +113,26 @@ struct FetchService{
         
         saveStudentToUserDefaults(student: studentObj)
 
-        print(studentObj)
         return studentObj
     }
     
     
     
     
+    // Course section
     
     
     
-    
-    func fetchCourse(for jId:[String:Any]) async throws -> Course{
-        let jsonData = try JSONSerialization.data(withJSONObject: jId, options: [])
-            
+    func fetchCourse(for stID:Int) async throws -> [Course]{
             // Create a URL
-        guard let url = URL(string: "") else {
+        guard let url = baseURL else {
             throw FetchError.badResponse
         }
         
-        // Create a URLRequest
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST" // Specify HTTP method (e.g., POST)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // Set Content-Type header
-        request.httpBody = jsonData
+        let createStudentURL = url.appending(path: "api/course/\(stID)") // MARK: api/Student -> endpoint
         
         // TODO: Fetch data
-        let (data, response) = try await URLSession.shared.data(for: request) // making a tuple
+        let (data, response) = try await URLSession.shared.data(from: createStudentURL) // making a tuple
         
         // TODO: Handle response
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{ // this is gonna give us urlResponse
@@ -165,12 +143,15 @@ struct FetchService{
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
         // TODO: Decode data
-        let courseData = try decoder.decode(Course.self, from: data)
-        print(courseData)
+        let courseData = try decoder.decode([Course].self, from: data)
         
         print("I have the data")
         // TODO: Return data
         return courseData
+    }
+    
+    func addCourse(){
+        
     }
     
     private mutating func fetchStudentJson(){
@@ -180,25 +161,24 @@ struct FetchService{
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 self.student = try decoder.decode(Student.self, from: data)
-                print(student!)
             }catch{
                 print("Error decoding JSON data: \(error)")
             }
         }
     }
     
-    private mutating func fetchCoursesJson(){
-        if let url = Bundle.main.url(forResource: "course", withExtension: "json"){
-            do{
-                let data = try Data(contentsOf: url)
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                self.course = try decoder.decode(Course.self, from: data)
-            }catch{
-                print("Error decoding JSON data: \(error)")
-            }
-        }
-
-    }
+//    private mutating func fetchCoursesJson(){
+//        if let url = Bundle.main.url(forResource: "course", withExtension: "json"){
+//            do{
+//                let data = try Data(contentsOf: url)
+//                let decoder = JSONDecoder()
+//                decoder.keyDecodingStrategy = .convertFromSnakeCase
+//                self.course = try decoder.decode(Course.self, from: data)
+//            }catch{
+//                print("Error decoding JSON data: \(error)")
+//            }
+//        }
+//
+//    }
     
 }

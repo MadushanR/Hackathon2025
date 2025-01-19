@@ -11,7 +11,7 @@ struct Course:Identifiable,Codable{
     var id:Int
     var courseName:String
     var sectionId:Int
-    var semester:Int
+    var semester:String
     var grade:Double
     var credits:Int
     
@@ -29,7 +29,7 @@ struct Course:Identifiable,Codable{
         self.id = try container.decode(Int.self, forKey: .id)
         self.courseName = try container.decode(String.self, forKey: .courseName)
         self.sectionId = try container.decode(Int.self, forKey: .sectionId)
-        self.semester = try container.decode(Int.self, forKey: .semester)
+        self.semester = try container.decode(String.self, forKey: .semester)
         self.grade = try container.decode(Double.self, forKey: .grade)
         self.credits = try container.decode(Int.self, forKey: .credits)
     }

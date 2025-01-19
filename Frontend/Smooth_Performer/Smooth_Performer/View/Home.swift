@@ -10,75 +10,67 @@ import SwiftUI
 struct Home: View {
     let vm = HomeVM()
     @Binding var showSLView:Bool
+    @State var student:Student
     var body: some View {
         ZStack{
-            ScrollView{ // TODO: need a list view with a navigation view to make it more presentable
-                VStack{
-                    HStack{
-                        Text("Hi")
-                        // MARK: user.name
-                        Text("User")
-                        Spacer()
+            // TODO: need a list view with a navigation view to make it more presentable
+            VStack{
+                HStack{
+                    Text("Hi")
+                    // MARK: user.name
+                    Text("\(student.firstName) \(student.lastName)")
+                    Spacer()
+                }
+                .font(.largeTitle)
+                .padding(.leading,30)
+                .padding(.top,30)
+                
+                HStack{
+                    Text("Current GPA:")
+                    // MARK: user.gpa
+                    Text("\(student.gpa)")
+                    Spacer()
+                }
+                .font(.title3)
+                .padding(.leading,30)
+                HStack{
+                    Text("Review Planner")
+                    Spacer()
+                    Button{
+                        // TODO: make a function to grab planner
+                    }label: {
+                        Image(systemName: "wand.and.rays")
+                            .fontWeight(.bold)
+                            .padding()
+                            .background(Color.orange)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                            .padding(.horizontal,10)
                     }
-                    .font(.largeTitle)
-                    .padding(.leading,30)
-                    .padding(.top,30)
+                }
+                .font(.title3)
+                .padding(.horizontal,30)
+                
+                if student.courses.isEmpty{
+                    Text("No Courses")
                     
-                    HStack{
-                        Text("Current GPA:")
-                        // MARK: user.gpa
-                        Text("GPA")
-                        Spacer()
-                    }
-                    .font(.title3)
-                    .padding(.leading,30)
-                    HStack{
-                        Text("Review Planner")
-                        Spacer()
-                        Button{
-                            // TODO: make a function to grab planner
-                        }label: {
-                            Image(systemName: "wand.and.rays")
-                                .fontWeight(.bold)
-                                .padding()
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                .padding(.horizontal,10)
+                }else{
+                    List(student.courses){course in
+                        GroupBox{
+                            Text("\(course.courseName)")
                         }
                     }
-                    .font(.title3)
-                    .padding(.horizontal,30)
-                    
-                    // TODO: List view for courses
-                    GroupBox{
-                        Text("Course1")
-                    }
-                    .padding(10)
-                    GroupBox{
-                        Text("Course2")
-                    }
-                    .padding(10)
-                    GroupBox{
-                        Text("Course3")
-                    }
-                    .padding(10)
-                    GroupBox{
-                        Text("Course4")
-                    }
-                    .padding(10)
-                    GroupBox{
-                        Text("Course5")
-                    }
-                    .padding(10)
                 }
+
+
             }
-                    
+            
             VStack(){
                 Spacer()
                 Button{
                     // TODO: function for adding Course
-                    showSLView = vm.signOut()
+//                    showSLView = vm.signOut() //MARK: sign-Out
+                    
                 }label: {
                     Text("+ Add Course")
                         .font(.title3)
@@ -95,9 +87,14 @@ struct Home: View {
             }
             
         }
+        .onAppear{
+            Task{
+                student.courses = await vm.addCourses(id: student.studentId)
+            }
+        }
     }
 }
 
 #Preview {
-    Home(showSLView: .constant(true))
+    Home(showSLView: .constant(true), student: FetchService().student!)
 }

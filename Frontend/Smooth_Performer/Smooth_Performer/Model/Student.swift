@@ -15,9 +15,8 @@ struct Student: Codable{
     let password:String
     let gpa:Int
     let desiredGPA:Int
-    var courses:[Course]?
+    var courses:[Course]
     
-//    var id = {Student.self}
     
     
     
@@ -42,7 +41,7 @@ struct Student: Codable{
         self.email = try studentContainer.decode(String.self, forKey: .email)
         self.password = try studentContainer.decode(String.self, forKey: .password)
         self.gpa = try studentContainer.decode(Int.self, forKey: .gpa)
-        self.courses = try studentContainer.decodeIfPresent([Course].self, forKey: .courses)
+        self.courses = try studentContainer.decode([Course].self, forKey: .courses)
     }
     
     

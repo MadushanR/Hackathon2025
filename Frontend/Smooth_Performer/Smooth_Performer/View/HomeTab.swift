@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct HomeTab: View {
+    @State var currentStudent:Student? = nil
     @Binding var showSLView:Bool
     var body: some View {
         TabView {
-            Home(showSLView: $showSLView)
+            Home(showSLView: $showSLView, student: currentStudent ?? FetchService().student!)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
@@ -22,6 +23,11 @@ struct HomeTab: View {
 //                    Image(systemName: "person.fill")
 //                    Text("User")
 //                }
+        }
+        .onAppear{
+            Task{
+                currentStudent = try FetchService().fetchCurrentStudent() ?? FetchService().student!
+            }
         }
         .preferredColorScheme(.light)
     }

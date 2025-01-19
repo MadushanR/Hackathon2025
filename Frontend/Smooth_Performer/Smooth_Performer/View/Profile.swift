@@ -24,8 +24,12 @@ struct Profile: View {
             .padding(35)
             
             VStack{
-                List(student.courses!){course in
-                    Text("\(course.courseName)")
+                if student.courses.isEmpty{
+                    Text("No Courses")
+                }else{
+                    List(student.courses){course in
+                        Text("\(course.courseName)")
+                    }
                 }
             }
             
