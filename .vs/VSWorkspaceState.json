@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Backend",
-    "\\Backend\\HackathonProject"
+    "\\Backend\\HackathonProject",
+    "\\Backend\\HackathonProject\\Controllers"
   ],
-  "SelectedNode": "\\Backend\\HackathonProject\\Program.cs",
+  "SelectedNode": "\\Backend\\HackathonProject\\Controllers\\StudentController.cs",
   "PreviewInSolutionExplorer": false
 }
