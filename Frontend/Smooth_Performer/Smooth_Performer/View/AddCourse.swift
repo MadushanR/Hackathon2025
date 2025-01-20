@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct AddCourse: View {
+    let vm = HomeVM()
+    
+    @Binding var disableView:Bool
     @State var courseID:String = ""
     var body: some View {
         Spacer()
         VStack(alignment: .leading){
             Text("Hi")
                 .font(.largeTitle)
-            Text("To add Course. Search with the course Id provided from your University/College.")
+            Text("To add Course. Search with the course Id provided by your University or College.")
                 .font(.title3)
         }
         .padding()
@@ -37,6 +40,7 @@ struct AddCourse: View {
         
         Button{
             // ADD Course
+            disableView.toggle()
         }label: {
             Text("+  Add")
                 .font(.title3)
@@ -55,5 +59,5 @@ struct AddCourse: View {
 }
 
 #Preview {
-    AddCourse()
+    AddCourse(disableView: .constant(false))
 }

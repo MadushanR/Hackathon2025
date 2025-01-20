@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Home: View {
     let vm = HomeVM()
-    @Binding var showSLView:Bool
+    @State var addCourse:Bool = false
     @State var student:Student
     var body: some View {
         ZStack{
@@ -70,6 +70,7 @@ struct Home: View {
                 Button{
                     // TODO: function for adding Course
 //                    showSLView = vm.signOut() //MARK: sign-Out
+                    addCourse.toggle()
                     
                 }label: {
                     Text("+ Add Course")
@@ -89,12 +90,15 @@ struct Home: View {
         }
         .onAppear{
             Task{
-                student.courses = await vm.addCourses(id: student.studentId)
+                student.courses = await vm.loadCourses(id: student.studentId)
             }
+        }
+        .sheet(isPresented: $addCourse) {
+            AddCourse(disableView: $addCourse)
         }
     }
 }
 
 #Preview {
-    Home(showSLView: .constant(true), student: FetchService().student!)
+    Home(student: FetchService().student!)
 }

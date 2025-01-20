@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct Profile: View {
+    let vm = ProfileVM()
     let student:Student
-    
+    @Binding var showSLView:Bool
     var body: some View {
         NavigationStack{
+            
             HStack{
                 VStack(alignment: .leading){
                     Text("\(student.firstName) \(student.lastName)")
                         .font(.largeTitle)
-//                    Text("\(student.id)")
-//                        .font(.title2)
+                    Text("\(student.studentId)")
+                        .font(.title2)
                 }
                 Spacer()
             }
@@ -53,6 +55,21 @@ struct Profile: View {
             .padding(.horizontal,40)
             .padding(.bottom,30)
             
+            Button{
+                showSLView = vm.signOut()
+            }label: {
+                Text("Log-Out")
+            }
+            .disabled(false)
+            .font(.title3)
+            .fontWeight(.bold)
+            .frame(maxWidth: 90)
+            .padding()
+            .background(Color.orange)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .padding(.horizontal,40)
+            
             Spacer()
                 
         }
@@ -60,6 +77,6 @@ struct Profile: View {
 }
 
 #Preview {
-    Profile(student: FetchService().student!)
+    Profile(student: FetchService().student!, showSLView: .constant(true))
 //    Profile()
 }

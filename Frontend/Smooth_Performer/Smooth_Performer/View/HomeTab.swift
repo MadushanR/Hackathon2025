@@ -12,17 +12,17 @@ struct HomeTab: View {
     @Binding var showSLView:Bool
     var body: some View {
         TabView {
-            Home(showSLView: $showSLView, student: currentStudent ?? FetchService().student!)
+            Home(student: currentStudent ?? FetchService().student!)
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
             
-//            Profile(student: FetchService().student!)
-//                .tabItem {
-//                    Image(systemName: "person.fill")
-//                    Text("User")
-//                }
+            Profile(student: currentStudent ?? FetchService().student!, showSLView: $showSLView)
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("User")
+                }
         }
         .onAppear{
             Task{

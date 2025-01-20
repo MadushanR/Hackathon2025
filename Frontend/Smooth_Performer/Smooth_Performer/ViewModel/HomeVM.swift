@@ -40,7 +40,7 @@ class HomeVM:ObservableObject{
         }
     }
     
-    func addCourses(id:Int) async -> [Course]{
+    func loadCourses(id:Int) async -> [Course]{
         var course:[Course]
         status = .fetching
         print("Fetching from home view model course")
@@ -59,6 +59,25 @@ class HomeVM:ObservableObject{
         }
         
     }
-
+    
+//    func addCourse(id:Int) async -> Course{
+//        var course:Course
+//        status = .fetching
+//        print("Fetching from home view model course")
+//        
+//        do{
+//            print("Just before vm function course")
+//            course = try await fetcher
+//            print("Fetched form home VM course")
+//            
+//            status = .success
+//            print("success From home VM course")
+//            return course
+//        }catch{
+//            status = .failed(message: "User not found/Wrong Credentials")
+//            return nil
+//        }
+//    }
+    
 }
 

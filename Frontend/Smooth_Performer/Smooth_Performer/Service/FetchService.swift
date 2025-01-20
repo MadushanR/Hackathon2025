@@ -150,8 +150,30 @@ struct FetchService{
         return courseData
     }
     
-    func addCourse(){
+    func addCourse(for id:Int) async throws -> Course{
+        guard let url = baseURL else {
+            throw FetchError.badResponse
+        }
         
+        let createStudentURL = url.appending(path: "api/course/\(id)")
+        
+        // TODO: Fetch data
+        let (data, response) = try await URLSession.shared.data(from: createStudentURL) // making a tuple
+        
+        // TODO: Handle response
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else{ // this is gonna give us urlResponse
+            throw FetchError.badResponse
+        }
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        // TODO: Decode data
+        let courseData = try decoder.decode(Course.self, from: data)
+        
+        print("I have the data")
+        // TODO: Return data
+        return courseData
     }
     
     private mutating func fetchStudentJson(){
