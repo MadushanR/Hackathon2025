@@ -48,8 +48,8 @@ An OpenAI-powered iOS application that predicts the grades you need to achieve a
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/ios-gpa-predictor.git
-cd ios-gpa-predictor
+git clone https://github.com/MadushanR/Hackathon2025.git
+cd Hackathon2025
 ```
 
 ### Backend Setup
@@ -57,7 +57,7 @@ cd ios-gpa-predictor
 1. Navigate to the backend project:
 
    ```bash
-   cd backend/GradePredictorAPI
+   cd backend/
    ```
 2. Configure database connection in `appsettings.json`:
 
