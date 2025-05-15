@@ -16,8 +16,6 @@ An OpenAI-powered iOS application that predicts the grades you need to achieve a
 * [Running the Application](#running-the-application)
 * [API Endpoints](#api-endpoints)
 * [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
 
 ## Features
 
@@ -140,15 +138,6 @@ cd Hackathon2025
 3. Commit your changes (`git commit -m "Add feature"`) 🛠️
 4. Push to your branch (`git push origin feature/YourFeature`) 🚀
 5. Open a Pull Request 🔎
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-
-* **Your Name** – [your.email@example.com](mailto:your.email@example.com)
-* **GitHub** – [https://github.com/your-username](https://github.com/your-username)
 
 ---
 
