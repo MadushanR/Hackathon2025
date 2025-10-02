@@ -35,7 +35,7 @@ export default function Home() {
       ))}
 
       <div className="flex flex-col items-center gap-6 px-4 z-10">
-        <h1 className="text-5xl font-bold drop-shadow-lg animate-fadeIn">Welcome to Student Portal</h1>
+        <h1 className="text-5xl font-bold drop-shadow-lg animate-fadeIn">Welcome to GPA Predictor Portal</h1>
         <div className="flex gap-4 animate-fadeIn animate-delay-300">
           <Link href="/login">
             <button className="px-6 py-2 bg-blue-500 hover:bg-blue-600 transition-all transform hover:scale-105 rounded text-white font-semibold shadow-md">

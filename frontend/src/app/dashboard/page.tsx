@@ -53,6 +53,8 @@ export default function Dashboard() {
 
         {/* Courses Section */}
         <section className="bg-white/20 p-4 rounded-lg shadow-md animate-fadeIn animate-delay-200">
+        <span className="text-white">Current GPA : {student.gpa} </span><br />
+        <span className="text-white">Desired GPA : {student.desiredGPA} </span>
           <h2 className="text-2xl mb-3">Your Courses</h2>
           <CourseList
             courses={courses}
