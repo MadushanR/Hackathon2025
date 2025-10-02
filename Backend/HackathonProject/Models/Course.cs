@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace HackathonProject.Models
 {
@@ -8,8 +7,13 @@ namespace HackathonProject.Models
     {
         [Key]
         public int CourseId { get; set; }
+
+        [Required]
         public string CourseName { get; set; }
+
+        [Required]   // Make Semester required
         public string Semester { get; set; }
+
         public int SectionId { get; set; }
         public int Credits { get; set; }
         public double Grade { get; set; }
@@ -17,7 +21,7 @@ namespace HackathonProject.Models
         // Foreign Key
         public int StudentId { get; set; }
 
-        // Navigation Property
+        // Navigation property
         [ForeignKey("StudentId")]
         public Student Student { get; set; }
     }

@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("6dc5ff0d-5315-4b08-b98d-d4b9e6159daf")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("HackathonProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08cdc6553db87a872e57dd438c45d53f612879d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53d05207d4432677ee242919172a2e965e90a06c")]
 [assembly: System.Reflection.AssemblyProductAttribute("HackathonProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HackathonProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

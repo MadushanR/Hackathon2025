@@ -3,8 +3,9 @@
     "",
     "\\HackathonProject",
     "\\HackathonProject\\Controllers",
-    "\\HackathonProject\\Models"
+    "\\HackathonProject\\Views",
+    "\\HackathonProject\\Views\\Home"
   ],
-  "SelectedNode": "\\HackathonProject\\Models\\ErrorViewModel.cs",
+  "SelectedNode": "\\HackathonProject\\Controllers\\StudentController.cs",
   "PreviewInSolutionExplorer": false
 }

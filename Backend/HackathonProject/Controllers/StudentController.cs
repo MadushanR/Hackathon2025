@@ -9,168 +9,88 @@ namespace HackathonProject.Controllers
     public class StudentController : ControllerBase
     {
         private readonly DataContext _context;
-        private readonly IConfiguration _config;
 
-        public StudentController(DataContext context, IConfiguration config)
+        public StudentController(DataContext context)
         {
             _context = context;
-            _config = config;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterStudent([FromBody] Student newStudent)
+        public async Task<IActionResult> RegisterStudent([FromBody] CreateStudentDto dto)
         {
-            if (string.IsNullOrWhiteSpace(newStudent.Email) || string.IsNullOrWhiteSpace(newStudent.Password))
-            {
+            if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Password))
                 return BadRequest(new { error = "Email and Password are required." });
-            }
 
-            bool emailExists = await _context.Students.AnyAsync(s => s.Email == newStudent.Email);
-            if (emailExists)
-            {
+            if (await _context.Students.AnyAsync(s => s.Email == dto.Email))
                 return BadRequest(new { error = "A student with that email already exists." });
-            }
 
-            _context.Students.Add(newStudent);
+            var student = new Student
+            {
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Password = dto.Password,
+                GPA = dto.GPA,
+                DesiredGPA = dto.DesiredGPA
+            };
+
+            _context.Students.Add(student);
             await _context.SaveChangesAsync();
-
-            // Return only the student object as a flat JSON response
-            return Ok(newStudent);
-
+            return Ok(student);
         }
 
 
-        /// <summary>
-        /// POST: api/student/login
-        /// Validates credentials and returns the student object if successful.
-        /// </summary>
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            if (string.IsNullOrWhiteSpace(loginDto.Email) || string.IsNullOrWhiteSpace(loginDto.Password))
-            {
-                return BadRequest(new { error = "Email and Password are required." });
-            }
-
             var student = await _context.Students.FirstOrDefaultAsync(s => s.Email == loginDto.Email);
             if (student == null || student.Password != loginDto.Password)
-            {
-                return Unauthorized(new { error = "Invalid credentials. Please check your email and password." });
-            }
+                return Unauthorized(new { error = "Invalid credentials." });
 
-
-            // Return the student object directly
             return Ok(student);
-
-        }
-
-
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> GetAllStudents()
-        {
-            var students = await _context.Students.ToListAsync();
-            return Ok(students);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Student>> GetStudentById(int id)
         {
             var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound($"No student found with ID = {id}");
-            }
-
+            if (student == null) return NotFound();
             return Ok(student);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Student>> CreateStudent([FromBody] Student newStudent)
-        {
-            _context.Students.Add(newStudent);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetStudentById), new { id = newStudent.StudentId }, newStudent);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateStudent(int id, [FromBody] UpdateStudentDto updatedStudentDto)
         {
-            var existingStudent = await _context.Students.FindAsync(id);
-            if (existingStudent == null)
-            {
-                return NotFound($"No student found with ID = {id}");
-            }
-
-            existingStudent.FirstName = updatedStudentDto.FirstName;
-            existingStudent.LastName = updatedStudentDto.LastName;
-            existingStudent.Email = updatedStudentDto.Email;
-            existingStudent.Password = updatedStudentDto.Password;
-            existingStudent.GPA = updatedStudentDto.GPA;
-
-            await _context.SaveChangesAsync();
-
-            return NoContent(); // Return 204 No Content
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
-        {
             var student = await _context.Students.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound($"No student found with ID = {id}");
-            }
+            if (student == null) return NotFound($"No student found with ID = {id}");
 
-            _context.Students.Remove(student);
+            student.FirstName = updatedStudentDto.FirstName;
+            student.LastName = updatedStudentDto.LastName;
+            student.Email = updatedStudentDto.Email;
+            student.Password = updatedStudentDto.Password;
+            student.GPA = updatedStudentDto.GPA;
+            student.DesiredGPA = updatedStudentDto.DesiredGPA;
+
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        [HttpGet("{studentId}/gpa")]
-        public async Task<IActionResult> CalculateGpaBySemester(int studentId)
+        // DELETE: api/student/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteStudent(int id)
         {
-            // 1. Get all courses for the student
-            var courses = await _context.Courses
-                .Where(c => c.StudentId == studentId)
-                .ToListAsync();
+            var student = await _context.Students.FindAsync(id);
+            if (student == null) return NotFound($"No student found with ID = {id}");
 
-            if (courses == null || !courses.Any())
-            {
-                return NotFound(new { error = "No courses found for this student." });
-            }
+            // Remove all courses of the student first (optional, but good for referential integrity)
+            var courses = _context.Courses.Where(c => c.StudentId == id);
+            _context.Courses.RemoveRange(courses);
 
-            // 2. Group courses by semester
-            var gpaBySemester = courses
-                .GroupBy(c => c.Semester)
-                .Select(group => new
-                {
-                    Semester = group.Key,
-                    GPA = CalculateGpa(group.ToList())
-                })
-                .ToList();
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
 
-            return Ok(gpaBySemester);
+            return NoContent(); // 204 No Content
         }
-
-        /// <summary>
-        /// Helper method to calculate GPA for a list of courses.
-        /// </summary>
-        private double CalculateGpa(List<Course> courses)
-        {
-            double totalGradePoints = 0;
-            int totalCredits = 0;
-
-            foreach (var course in courses)
-            {
-                totalGradePoints += course.Grade * course.Credits;
-                totalCredits += course.Credits;
-            }
-
-            return totalCredits > 0 ? totalGradePoints / totalCredits : 0;
-        }
-
     }
 
     public class LoginDto
@@ -186,5 +106,6 @@ namespace HackathonProject.Controllers
         public string Email { get; set; }
         public string Password { get; set; }
         public double GPA { get; set; }
+        public double DesiredGPA { get; set; }
     }
 }

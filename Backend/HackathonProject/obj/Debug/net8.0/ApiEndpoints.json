@@ -106,52 +106,6 @@
   },
   {
     "ContainingType": "HackathonProject.Controllers.StudentController",
-    "Method": "GetAllStudents",
-    "RelativePath": "api/Student",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[HackathonProject.Models.Student, HackathonProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "HackathonProject.Controllers.StudentController",
-    "Method": "CreateStudent",
-    "RelativePath": "api/Student",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "newStudent",
-        "Type": "HackathonProject.Models.Student",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "HackathonProject.Models.Student",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "HackathonProject.Controllers.StudentController",
     "Method": "GetStudentById",
     "RelativePath": "api/Student/{id}",
     "HttpMethod": "GET",
@@ -215,22 +169,6 @@
   },
   {
     "ContainingType": "HackathonProject.Controllers.StudentController",
-    "Method": "CalculateGpaBySemester",
-    "RelativePath": "api/Student/{studentId}/gpa",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "studentId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "HackathonProject.Controllers.StudentController",
     "Method": "Login",
     "RelativePath": "api/Student/login",
     "HttpMethod": "POST",
@@ -254,8 +192,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "newStudent",
-        "Type": "HackathonProject.Models.Student",
+        "Name": "dto",
+        "Type": "HackathonProject.Models.CreateStudentDto",
         "IsRequired": true
       }
     ],

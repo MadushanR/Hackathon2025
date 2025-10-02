@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HackathonProject.Models
 {
@@ -12,11 +11,11 @@ namespace HackathonProject.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public double GPA { get; set; }
+
+        // Add DesiredGPA to support frontend
         public double DesiredGPA { get; set; }
 
-        // Navigation Property for many courses
-        public ICollection<Course> Courses { get; set; } = new List<Course>();
-
+        // Navigation property
+        public ICollection<Course> Courses { get; set; }
     }
 }
-    

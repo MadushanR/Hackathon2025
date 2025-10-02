@@ -5,7 +5,7 @@
 namespace HackathonProject.Migrations
 {
     /// <inheritdoc />
-    public partial class IM : Migration
+    public partial class InitialSetupSqlite : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,14 +14,15 @@ namespace HackathonProject.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GPA = table.Column<double>(type: "float", nullable: false),
-                    DesiredGPA = table.Column<double>(type: "float", nullable: false)
+                    StudentId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FirstName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    GPA = table.Column<double>(type: "REAL", nullable: false),
+                    DesiredGPA = table.Column<double>(type: "REAL", nullable: false),
+                    Major = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,14 +33,14 @@ namespace HackathonProject.Migrations
                 name: "Courses",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Semester = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SectionId = table.Column<int>(type: "int", nullable: false),
-                    Credits = table.Column<int>(type: "int", nullable: false),
-                    Grade = table.Column<double>(type: "float", nullable: false),
-                    StudentId = table.Column<int>(type: "int", nullable: false)
+                    CourseId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CourseName = table.Column<string>(type: "TEXT", nullable: false),
+                    Semester = table.Column<string>(type: "TEXT", nullable: false),
+                    SectionId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Credits = table.Column<int>(type: "INTEGER", nullable: false),
+                    Grade = table.Column<double>(type: "REAL", nullable: false),
+                    StudentId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
