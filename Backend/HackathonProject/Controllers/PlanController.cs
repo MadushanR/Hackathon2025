@@ -92,7 +92,7 @@ Courses:
 
         private async Task<string> CallOpenAIChatAsync(string userPrompt)
         {
-            string apiKey = _config["OpenAI:ApiKey"];
+            var apiKey = _config["OpenAI:ApiKey"];
             if (string.IsNullOrEmpty(apiKey))
                 return "OpenAI API key not configured.";
 
